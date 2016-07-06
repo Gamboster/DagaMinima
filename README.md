@@ -1,5 +1,5 @@
 # DagaMinima
-#holi
+
 npm install -g cordova ionic
 
 npm i

@@ -1,4 +1,10 @@
 {
-  "name": "DagaMinima",
-  "app_id": ""
+  "name": "starter",
+  "app_id": "1",
+  "gulpStartupTasks":
+  ["sass", "watch"],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }
