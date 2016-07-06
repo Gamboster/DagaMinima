@@ -8,10 +8,11 @@ var rename = require('gulp-rename');
 var sh = require('shelljs');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  js: ['src/js/app.js', 'src/js/routes.js', 'src/js/init.js', 'src/js/controllers/*.js']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'concat']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/*.scss')
@@ -28,8 +29,15 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
+gulp.task('concat', function() {
+  return gulp.src(['src/js/app.js', 'src/js/routes.js', 'src/js/init.js', 'src/js/controllers/*.js'])
+    .pipe(concat('starter.js'))
+    .pipe(gulp.dest('./www/js/'));
+});
+
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.js, ['concat']);
 });
 
 gulp.task('install', ['git-check'], function() {
